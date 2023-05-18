@@ -10,9 +10,28 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-primary" href="#">Navbar</a>
+        <a class="navbar-brand fw-bold text-primary" href="#">TaskY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,36 +42,44 @@
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <button type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add New</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>Add New</button>
           </form>
         </div>
       </div>
     </nav>
 
-    <div class="container text-center">
-      <div class="row align-items-start">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              Featured
-              <button type="button" class="btn btn-outline-info" >Info</button>
-            </div>
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col">
 
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="input-group mb-3 shadow">
+            <input type="text" class="form-control" placeholder="Search here" aria-label="Search here" aria-describedby="basic-addon2">
+            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></i></span>
+          </div>
+        </div>
+        <div class="col">
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pencil"></i></button>
+              <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+            </div>
             <div class="card-body">
-              <img src="download.jpeg" class="img-thumbnail" alt="...">
+              <img src="download.jpeg" class="card-img-top" alt="...">
+              <h5 class="card-title mt-3 fw-bold text-primary">Title</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
-        <div class="col">
-          One of three columns
-        </div>
-        <div class="col">
-          One of three columns
-        </div>
       </div>
     </div>
-
   </body>
 </html>
