@@ -41,11 +41,7 @@ const loadInitialCardData = () => {
       //update our globalStore
       globalStore.push(cardObject);
 
-  }
-
-)
-
-
+  })
 };
 
 const saveChanges = () => {
@@ -58,7 +54,6 @@ const saveChanges = () => {
     taskDescription: document.getElementById("taskdescription").value,
   };
 
-
 taskContainer.insertAdjacentHTML("beforeend", generateNewCard(taskData));
 
 globalStore.push(taskData);
@@ -69,7 +64,13 @@ localStorage.setItem("tasky",JSON.stringify({cards:globalStore}));
 };
 
 
-/*const taskContainer = document.querySelector(".task__container")
+/*------------------------------------------------------------------------------------------------------------------------------------------------------*/
+//Another way of writing the same code above
+/*------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*
+const taskContainer = document.querySelector(".task__container");
+const globalStorage = [];
 console.log(taskContainer);
 
 function saveChanges() {
@@ -81,7 +82,31 @@ function saveChanges() {
     taskType: document.getElementById("tasktype").value,
   };
 
-const newCard = `
+
+taskContainer.insertAdjacentHTML("beforeend", newCard(saveData));
+globalStorage.push(saveData);
+localStorage.setItem("tasky",JSON.stringify({cards:globalStorage}));
+
+};
+
+const loadInitialCardData = () => {
+  //need to get the card details from the localStorage
+  const getData = localStorage.getItem("tasky");
+
+  //need to convert to the object Object using parse
+  const {cards} = JSON.parse(getData);
+
+  //need to add it to the taskContainer
+  cards.map((cardObject) => {taskContainer.insertAdjacentHTML("beforeend", newCard(cardObject));
+
+  //update the globalStorage
+  globalStorage.push(cardObject);
+})
+
+
+};
+
+const newCard = (saveData) => `
 <div class="col-sm-12 col-md-6 col-lg-4" id=${saveData.id}>
   <div class="card">
     <div class="card-header d-flex justify-content-end gap-2">
@@ -97,14 +122,12 @@ const newCard = `
   </div>
 </div>
 </div>
-`
-
-taskContainer.insertAdjacentHTML("beforeend", newCard)
-}; */
+`;
+*/
 
 
 
-
+/*------------------------------------------------------------------------------------------------------------------------------------------------------*/
 //Issues that we face
 // Page refreshes causes the data to be deleted --> hence we use local storage
 //API -> Application Programming Interface
