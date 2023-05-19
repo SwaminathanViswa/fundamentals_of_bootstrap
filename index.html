@@ -14,7 +14,7 @@
     </script>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body onload="loadInitialCardData()">
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,20 +89,7 @@
       </div>
 
       <div class="row task__container">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="card">
-            <div class="card-header d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pencil"></i></button>
-              <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-            </div>
-            <div class="card-body">
-              <img src="download.jpeg" class="card-img-top" alt="...">
-              <h5 class="card-title mt-3 fw-bold text-primary">Title</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
     <script src="my-js-file.js">

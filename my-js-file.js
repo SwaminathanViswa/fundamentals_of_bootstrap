@@ -7,8 +7,46 @@ which are a convenient way to include expressions and multi-line strings in your
 
 //Either the arrow function or the normal function can be written as shown in the two examples below
 
-const taskContainer = document.querySelector(".task__container")
+const taskContainer = document.querySelector(".task__container");
+const globalStore = []; //array of objects
 console.log(taskContainer);
+const generateNewCard = (taskData) => `
+  <div class="col-sm-12 col-md-6 col-lg-4" id=${taskData.id}>
+    <div class="card">
+      <div class="card-header d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pencil"></i></button>
+        <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <div class="card-body">
+        <img src=${taskData.imageUrl} class="card-img-top" alt="...">
+        <h5 class="card-title mt-3 fw-bold text-primary">${taskData.taskTitle}</h5>
+        <p class="card-text">${taskData.taskDescription}</p>
+        <a href="#" class="btn btn-primary">${taskData.taskType}</a>
+      </div>
+    </div>
+  </div>`;
+
+
+const loadInitialCardData = () => {
+  //localstorage to get tasky card data
+  const getCardData = localStorage.getItem("tasky");
+
+  //convert to normal objects
+  const {cards} = JSON.parse(getCardData);
+
+  //loop over those array of task object to create HTML card, inject it to dom
+  cards.map((cardObject) => {
+    taskContainer.insertAdjacentHTML("beforeend",generateNewCard(cardObject));
+
+      //update our globalStore
+      globalStore.push(cardObject);
+
+  }
+
+)
+
+
+};
 
 const saveChanges = () => {
   const taskData = {
@@ -20,24 +58,13 @@ const saveChanges = () => {
     taskDescription: document.getElementById("taskdescription").value,
   };
 
-const newCard = `
-<div class="col-sm-12 col-md-6 col-lg-4" id=${taskData.id}>
-  <div class="card">
-    <div class="card-header d-flex justify-content-end gap-2">
-      <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pencil"></i></button>
-      <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-    </div>
-    <div class="card-body">
-      <img src=${taskData.imageUrl} class="card-img-top" alt="...">
-      <h5 class="card-title mt-3 fw-bold text-primary">${taskData.taskTitle}</h5>
-      <p class="card-text">${taskData.taskDescription}</p>
-      <a href="#" class="btn btn-primary">${taskData.taskType}</a>
-    </div>
-  </div>
-</div>`
 
+taskContainer.insertAdjacentHTML("beforeend", generateNewCard(taskData));
 
-taskContainer.insertAdjacentHTML("beforeend", newCard);
+globalStore.push(taskData);
+//localStorage is a property that allows JavaScript sites and apps to save key-value pairs in a web browser with no expiration date.
+//It is stored as an object Object format and instead we want a array of objects format so we are using the JSON code below
+localStorage.setItem("tasky",JSON.stringify({cards:globalStore}));
 
 };
 
@@ -74,3 +101,14 @@ const newCard = `
 
 taskContainer.insertAdjacentHTML("beforeend", newCard)
 }; */
+
+
+
+
+//Issues that we face
+// Page refreshes causes the data to be deleted --> hence we use local storage
+//API -> Application Programming Interface
+//local storage -> Accessing application via local storage
+//Interface is the middle man
+
+// Features - Delete, edit, open the card
